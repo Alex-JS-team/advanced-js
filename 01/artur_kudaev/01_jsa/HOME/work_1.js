@@ -9,7 +9,13 @@ let str = `063-111-1234
 (333) 456-8768
 4446575547`;
 
-//st = st.split('\n');
 
-console.log(str.replace(/[()-]+/, ''))
+function splitNumber(str) {
+  str = str.split('\n');
+  console.log(str)
+  //let num = str.
+}
+
+splitNumber(str)
+
 
