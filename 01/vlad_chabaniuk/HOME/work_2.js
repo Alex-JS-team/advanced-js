@@ -27,4 +27,3 @@ const movies = [
 const actors = movies.reduce((acc, { casts }) => [...acc, ...casts.filter(actor => !acc.some(existingActor => existingActor === actor))], [])
 
 console.log(actors)
-
