@@ -11,15 +11,13 @@ const st = `063-111-1234
 4446575547`
 
 // Regular expessions
-const numberRegExp = /\(?\d\d\d\)?(\s|\-)?(\d\d\d\-\d\d\d\d|\d\d\d\d\d\d\d)/g
-const operatorRegExp = /\(?\d\d\d\)?/
-const block1RegExp = /((\s|\-)|\d\d\d)(\d\d\d)/
-const block2RegExp = /((\s|\-)|\d\d\d\d\d\d)(\d\d\d\d)/
+const numberRegExp = /\(?\d{3}\)?(\s|\-)?(\d{3}\-\d{4}|\d{7})/g
+const operatorRegExp = /\(?\d{3}\)?/
+const block1RegExp = /((\s|\-)|\d{3})(\d{3})/
+const block2RegExp = /((\s|\-)|\d{6})(\d{4})/
 
 // Revome operator parentheses
-const processOperator = operator => operator
-  .replace('(', '')
-  .replace(')', '')
+const processOperator = operator => operator.replace(/[()]/g, '')
 
 // Match numbers with regex and format it in a new way
 const formattedNumbers = st
