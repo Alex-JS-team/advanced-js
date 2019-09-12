@@ -30,7 +30,7 @@ movies.map(el=> el.casts.reduce((total, item)=> arr.push(item), 0))
 
 function unique(arr) {
 
-    return result = [...new Set(arr)]
+    return [...new Set(arr)]
 
 }
 
