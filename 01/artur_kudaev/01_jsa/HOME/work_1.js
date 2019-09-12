@@ -13,15 +13,12 @@ let str = `063-111-1234
 function splitNumber(str) {
   str = str.split('\n');
 
-  let res = str.map(el=>{
-    return el.match(/\d/g).join('')
-  })
-  let r = res.map(el=>{
-    return el.replace(/\d+/, '('+el.substr(0,3)+') '+el.substr(3,3)+' '+el.substr(6,4))
-  })
-  console.log(r)
+  let res = str.map(el=> el.match(/\d/g).join(''));
+  let r = res.map(el=>el.replace(/\d+/, '('+el.substr(0,3)+') '+el.substr(3,3)+' '+el.substr(6,4)));
+
+  return r;
 }
 
-splitNumber(str)
+console.log(splitNumber(str))
 
 

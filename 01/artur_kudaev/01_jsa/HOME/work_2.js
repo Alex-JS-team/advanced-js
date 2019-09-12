@@ -26,15 +26,9 @@ var movies = [
 
 let arr = []
 
-movies.map(el=>{
-    el.casts.reduce((acc, item)=> {
-        return arr.push(acc+item)
-    }, [])
-})
+movies.map(el=> el.casts.reduce((acc, item)=> arr.push(acc+item), []))
 
-const res = arr.map(el=>{
-     return el.replace(/\d+/, '')
-})
+const res = arr.map(el=> el.replace(/\d+/, ''));
 
 function unique(arr) {
     let result = [];
