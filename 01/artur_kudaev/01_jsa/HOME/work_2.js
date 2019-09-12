@@ -24,12 +24,12 @@ var movies = [
     }
 ];
 
-let arr = []
+let arr = [];
 
-movies.map(el=> el.casts.reduce((total, item)=> arr.push(item), 0))
+movies.map(el=> el.casts.reduce((total, item)=> arr.push(item), 0));
 
 function unique(arr) {
-    return [...new Set(arr)]
+    return [...new Set(arr)];
 }
 
-console.log(unique(arr))
+console.log(unique(arr));
