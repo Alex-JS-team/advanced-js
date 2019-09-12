@@ -12,10 +12,9 @@ let str = `063-111-1234
 
 function splitNumber(str) {
   str = str.split('\n');
-  let res = str.map(el=> el.match(/\d/g).join(''));
-  return res.map(el=>el.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2 $3"));
+  return str.map(el=> el.match(/\d/g).join('').replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2 $3"));
 }
 
-console.log(splitNumber(str))
+console.log(splitNumber(str));
 
 
