@@ -6,23 +6,23 @@
 (444) 657 5547
 */
 
-const str = `063-111-1234
+const st = `063-111-1234
 (333) 456-8768
 4446575547`
 
-function format(phone) {
-  phone = phone.replace(/[^\d]/g, "");
+// Regular expessions
+const numberRegExp = /\(?\d{3}\)?(\s|\-)?(\d{3}\-\d{4}|\d{7})/g
+const operatorRegExp = /\(?\d{3}\)?/
+const block1RegExp = /((\s|\-)|\d{3})(\d{3})/
+const block2RegExp = /((\s|\-)|\d{6})(\d{4})/
 
-  console.log(phone)
+// Revome operator parentheses
+const processOperator = operator => operator.replace(/[()]/g, '')
 
-  phone = phone.match(/.{1,10}/g);
+// Match numbers with regex and format it in a new way
+const formattedNumbers = st
+  .match(numberRegExp)
+  .map(number => `(${processOperator(number.match(operatorRegExp)[0])}) ${number.match(block1RegExp)[3]} ${number.match(block2RegExp)[3]}`)
 
-  let newPhone= [];
-  phone.forEach (function(i) {
-      newPhone.push(i.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2 $3"));
-  });
-  return newPhone;
-}
-
-
-console.log(format(str));
+// Output
+formattedNumbers.forEach(number => console.log(number))
