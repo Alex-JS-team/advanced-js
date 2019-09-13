@@ -8,10 +8,3 @@
 let st = `063-111-1234
 (333) 456-8768
 4446575547`;
-
-st = st.replace(/-/g, ' ');
-st = st.replace(/063/g, '(063)');
-st = st.replace(/444/g, '(444) ');
-st = st.replace(/657/g, '657 ');
-
-console.log(st);
