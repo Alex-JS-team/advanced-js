@@ -24,6 +24,9 @@ const movies = [
 	}
 ]
 
-const actors = movies.reduce((acc, { casts }) => [...acc, ...casts.filter(actor => !acc.some(existingActor => existingActor === actor))], [])
+const arr1 = [1, 2, 3]
+const arr2 = [4, 5, 6]
 
-console.log(actors)
+const arr3 = [...arr1, ...arr2]
+
+console.log(arr3)
