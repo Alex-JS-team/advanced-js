@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title>Функции</title>
+    <meta charset="utf-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="_/css/style.css">
+	<script src="_/js/script.js"></script>
+ </head>
+<body>
+<div class="container">
+<h1>Функции </h1>
+<ul id="results"></ul>
+<script>
+
+/*
+//  Пример функции
+function square(n) {  //  n - это параметр
+     print("Square of " + n +" = "+ n*n);
+}
+ // При вызове функции ей передаются аргументы
+square(4); // например 4 - это аргумент
+square(3);
+square(2);
+
+ */
+
+/*
+// С использованием ключевого слова var внутри функции
+// создаются локальные переменные
+function test(b1, b2, b3){
+	var a1 = b1;
+	var a2 = b2;
+	var a3 = b3;
+    print("a1 = " + a1);
+    print("a2 = " + a2);
+    print("a3 = " + a3);
+}
+ //если передавать аргументов меньше чем декларированно
+ // параметров при описании функции, то недостающие буду undefined
+test(22);
+test(33,44);
+test(33,44,55);
+ */
+
+/*
+function hello(){
+  var name = prompt("Представьтесь пожайлуста");
+  print("Hello " + name + ", how are you ?");
+} 
+hello();
+ */
+
+/*
+var name = prompt("Представьтесь пожайлуста");
+var anotherName = "Толян";
+
+function hello(n) {
+  if(n){
+      print("Hello " + n);
+  } else {
+      print("Ooops!");
+  }
+} 
+
+hello(name);
+// hello(anotherName);
+// hello("Жорж Милославский");
+
+*/
+
+
+
+/*
+Локальные переменные создаются  внутри тела функции
+с помощью ключевого слова var. При этом если передать 
+в качестве аргумента переменную имя которой совпадает 
+с локальной переменной, то переданная переменная копируется 
+по значению в локальную и все изменения внутри функции ее не коснутся
+Например
+*/
+/*
+function hello(name) {
+	assert(true, "Передали переменную name = " + name); // выводим  локальную переменную
+	var name = "Леопольд"; // создаем локальную переменную
+	assert(true, "А это локальнаям переменная name = " + name); // выводим  локальную переменную
+} 
+
+var name = "Bob";  // это глобальная переменная
+hello(name);  // вызываем функцию и передаем ей  эту глобальную переменную
+              // Функция выводит  "Леопольд"
+
+// выводим переменную  name и видим, что она не изменилась, 
+//то есть внутри функции была создана своя переменная  name
+// а глобальная переменная осталась без изменения.
+assert(true, "Глобальная переменная name = " + name);  // выводит  "Bob"
+
+*/
+
+
+/*
+  Но если мы передадим в качестве параметра функции
+  ссылочный тип (например объект) то изменение его
+  свойств внутри функции будет изменять свойства 
+  объекта непосредственно
+*/
+
+/*
+// Функция принимает ссылочный тип, 
+// а именно  копию адреса объекта в памяти  !!!
+
+var  person = new Object(); // создаем объект
+
+function setName(obj)  {
+	obj.name = "Paul";
+} 
+
+// При вызове функции ей будет передаваться копия значения
+//переменной person. Это адрес объекта в области памяти (а не сам объект)
+setName(person);
+print(person.name); // выведется Paul
+
+*/
+
+/*
+  Но если объект создавать внутри функции, то его адрес будет
+  записан в локальную переменную, которая после выхода из 
+  области видимости функции будет уничтожена
+---------------------------------------- */
+/*
+
+ var  person = new Object(); // создаем объект
+ person.name = "Paul";
+ print(person.name);
+
+// В функции значение аргумента копируется !!!
+function setName(obj)  { //То есть передаваться будет адрес объекта а не сам объект
+    obj = new Object(); // obj - локальная переменная функции, ей присваивается новый адрес на вновь созданный объект
+	obj.name="Georg";
+	print("Inside function " +  obj.name);
+}  // локальная переменная obj будет уничтожена
+
+setName(person);
+print(person.name); // выводится Paul
+*/
+
+/*
+// Параметров меньше  чем аргументов
+
+function test (a,b,c){
+	print("a = " + a);
+    print("b = " + b);
+    print("c = " + c);
+}
+test(1,2);
+*/
+ 
+/*
+// Параметров больше чем аргументов
+ print("------------------------------");
+test(1,2,3,4,5,6);
+*/
+
+ 
+ 
+/* ---
+Попробуем передать функции  несуществующую переменную
+то есть тип у нее будет undefined	
+----------------------------------------- */
+
+/*
+function hello(name) {
+ print(name);
+} 
+hello();
+*/
+
+
+/*
+//  Применение параметров по умолчанию
+function hello(name) {
+   // name = (typeof name == 'undefined')? 'Боря' : name; 
+   //name = name || "Боря";
+   assert(true, name);
+}
+hello();
+hello("Bob");
+*/
+
+
+
+/* --------------------- instanceof ---------------------- */
+/*
+var i = 22;
+var u;
+var n = null;
+var o = new Object();
+
+assert(true, "typeof i = " + typeof i);
+assert(true, "typeof u = " + typeof u);
+assert(true, "typeof n(null) = " + typeof n);
+assert(true, "typeof o(object) = " + typeof o);
+
+
+// print("n instanceof  Object = " +  (n instanceof  Object ));
+// print("n instanceof  Array = " +  (n instanceof  Array));
+// print("o instanceof  Object = " +  (o instanceof  Object));
+// print("o instanceof  Array = " +  (o instanceof  Array));
+
+ */
+
+/* ******************  RETURN    ****************************   */
+
+/*
+function square(n){
+   return n*n;
+}
+
+ print(square(3));
+var v = square(4);
+alert(v);
+*/
+
+ 
+ /*
+ // Функция  может возвращать результат работы 
+ // другой функции
+function square(n){
+   return n*n;
+}
+
+function cube(q) {
+   return square(q) * q;
+}
+
+print(cube(2));
+*/
+
+/*
+function hello(name) {
+   name = (typeof name == 'undefined')? 'Боря':name; 
+   if (name == "Гриша") return;
+   print(name);
+}
+
+hello("Гриша");
+hello();
+ */
+
+/* ==========================  ARGUMENTS ===================== */
+// Внутри  функции все переданные аргументы доступны 
+// через массив arguments
+/*
+function test(a1,a2,a3){
+	
+	var args = arguments;
+	for(var i = 0; i < args.length; i++)
+		assert(true, args[i]);
+}
+test("John", "Paul", "Ringo", "George");
+*/
+
+
+
+</script>
+</div>
+</body>
+</html>
