@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+ <head>
+    <title>Рекурсия</title>
+    <meta charset="utf-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="_/css/style.css">
+	<script src="_/js/script.js"></script>
+ </head>
+<body>
+<div class="container">
+<h1>Рекурсия</h1>
+<ul id="results"></ul>
+<!-- ************************* -->
+<script>
+
+/* ==== Пример 1 ===== */
+/*
+function fact(n){
+    var res;
+    if(n == 1) return 1;
+    res = fact(n-1) * n;
+    return res;
+}
+print("Факториал числа 5 = " +  fact(5));
+*/
+
+/* ==== Пример 2 - то же самое но без рекурсии ===== */
+
+/*
+var n = 5;
+var out = 1;
+for(var i = n; i >=1; i--)
+	out *= i;
+print("Факториал числа 5 = " + out);
+*/
+
+/* ==== Пример 3 ===== */
+/*
+function reverce(st){
+	if(st.length <= 0) return;
+	 reverce(st.substr(1, st.length-1));
+	 print(st[0]);
+}
+reverce("Hello");
+*/
+
+
+
+
+</script>
+</div>
+</body>
+</html>
