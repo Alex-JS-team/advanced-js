@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List of friends</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h1>Filter</h1>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <select id="users-select" class="custom-select">
+                    <option>Choose age</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-5 offset-sm-1">
+                <h3>Filter by age</h3>
+                <div id="res"></div>
+        </div>
+    </div>
+
+</div>
+<script>
+
+
+// 1. Сгрупировать пользователей по возрасту и вывести
+//    в элемент select с value=""
+
+// 2. При віборе соответствующего option осуществить вывод
+//    соответствующих пользователей в элемент <div id="res"></div>
+
+
+const usersSelect = document.getElementById('users-select')
+const res = document.getElementById('res')
+
+let users = [
+ {id: 1, name: "John", age: "20"},
+ {id: 2, name: "Sasha", age: "30"},
+ {id: 3, name: "Bill", age: "40"},
+ {id: 4, name: "Ashley", age: "20"},
+ {id: 5, name: "Rachel", age: "40"},
+ {id: 6, name: "Tom", age: "30"},
+ {id: 7, name: "Steve", age: "30"},
+ {id: 8, name: "Jim", age: "40"},
+ {id: 9, name: "Willy", age: "20"}
+]
+
+</script>
+
+
+</body>
+</html>
