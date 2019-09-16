@@ -48,8 +48,26 @@ let users = [
  {id: 9, name: "Willy", age: "20"}
 ]
 
-let ages = [];
+let ageUser = [];
 
+for(let i = 0; i < users.length - 1; i++) {
+    ageUser.push(users[i].age);
+}
+function groupOfUsers(user, property) {
+    if(property == 'age') {
+      let unique = function(ageUser) {
+        let value = {};
+        return ageUser.filter((item) => {
+          return item in value ? false : value[item] = true;
+        });
+      }
+      console.log(unique(ageUser));
+    }
+
+    
+}
+
+groupOfUsers(users,"name");
 
 
 </script>
