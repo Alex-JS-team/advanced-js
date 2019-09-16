@@ -11,8 +11,8 @@
     <div class="row">
         <div class="col-sm-3">
             <div class="form-group">
-                <select id="users-select" class="custom-select">
-                    <option>Choose age</option>
+                <select id="users-select" class="custom-select" onchange="ageFilter(this)">
+                    <option value="0">Choose age</option>
                 </select>
             </div>
         </div>
@@ -56,11 +56,30 @@ let unicAge = usersAges.filter(function(age, index) {
     return usersAges.indexOf(age) === index;
 });
 
-unicAge.
-// usersSelect.innerHtml
+unicAge.forEach(function(elem) {
+    elem = '<option value="' + elem + '">' + elem + '</option>';
+    usersSelect.innerHTML += elem;
+});
 
+let selectedType = "0";
+function ageFilter(e) {
+    selectedType = e.value;
+    let result = "";
+    let renderAge = [];
+    for (let i = 0; i < users.length; i++) {
+        if (users[i].age === selectedType || selectedType === "0") {
+            renderAge.push(users[i]);
+        }
+    }
+    for (let y=0; y < renderAge.length; y++) {
+        result += renderUsersArr(renderAge[y]);
+    }
+    res.innerHTML = result;
+}
 
-console.log(unicAge);
+function renderUsersArr(item) {
+    return '<h4>'+ item.name + ':' + ' ' + item.age +' years</h4>'
+}
 
 </script>
 
