@@ -31,6 +31,7 @@ const list = document.getElementById('list');
 function map(list, fn){
     var list = document.createElement("ul");
     var listItem;
+    var friend = document.createElement("friend");
     arr.sort();
 
     for (var i = 0, length = arr.length; i < length; i++) {
@@ -40,6 +41,7 @@ function map(list, fn){
         listItem.innerHTML = item;
 
         list.appendChild(listItem);
+        friend.appendChild(list);
     }
 
     return list;
