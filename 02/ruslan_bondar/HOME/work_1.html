@@ -32,17 +32,12 @@
 
         sortedArr = arr.sort();
 
-        function map(list, fn) {
-            var html = '<ul>';
-            sortedArr.forEach(function (item, i, ar) {
-                html += '<li>' + item + '</li>';
-            });
-            html += '</ul>';
-
-            document.write(html);
+        let func = function(list, ar) {
+            ar = ar.map(name => name = `<li class="list-group-item">` + name + `</li>`).join('');
+            return list.innerHTML = ar;
         }
-
-        map(sortedArr);
+        
+        func(list, arr);
 
 
     </script>
