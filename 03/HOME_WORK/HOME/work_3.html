@@ -25,12 +25,18 @@
 var arr  = [11, 66, 33, 44, 22, 55, 2];
 
 function filter(arr, func){
-    // to do
+    let newArr = arr;
+    arr.forEach(element => {
+        if (func(element)){
+            newArr.push(element)
+        }
+    });
+    return newArr;
 }
 
 // Проверка
-var a = filter(arr, function(item){
-        // to do
+var a = filter(newArr, function(item){
+        return newArr.item > 50;
 });
 
 console.log(a);  //   [66, 55]]
