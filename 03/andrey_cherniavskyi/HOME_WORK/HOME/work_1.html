@@ -45,9 +45,9 @@ var d = document,
         els = list.getElementsByTagName('li'),
         len = els.length;
 
-for (var i = 0; i < len; i++) {
+for (let i = 0; i < len; i++) {
     els[i].onclick = function(){
-        alert(i);
+        alert(++i);
     };
 }
 
