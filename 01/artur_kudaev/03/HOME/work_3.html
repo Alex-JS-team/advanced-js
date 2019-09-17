@@ -24,14 +24,16 @@
 
 var arr  = [11, 66, 33, 44, 22, 55, 2];
 
+function func(e) {
+  return e > 50;
+}
+
 function filter(arr, func){
-    // to do
+    return arr.filter(func)
 }
 
 // Проверка
-var a = filter(arr, function(item){
-        // to do
-});
+var a = filter(arr, func);
 
 console.log(a);  //   [66, 55]]
 
