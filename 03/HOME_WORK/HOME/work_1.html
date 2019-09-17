@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+ <head>
+    <title>Lab 3</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+     <style>
+         li {font-size: 22px;}
+         li:hover {cursor:pointer;}
+     </style>
+     <script src="../js/script.js"></script>
+ </head>
+<body>
+<div class="container">
+<ul id="results"></ul>
+<h1 id="res"></h1>
+
+<div class="row">
+    <div class="col-sm-3">
+        <ul id="list" class="list-group">
+            <li class="list-group-item text-center">1</li>
+            <li class="list-group-item text-center">2</li>
+            <li class="list-group-item text-center">3</li>
+            <li class="list-group-item text-center">4</li>
+            <li class="list-group-item text-center">5</li>
+        </ul>
+    </div>
+</div>
+
+<script>
+/*
+При клике на любой элемент li мы в alert() получаем цифру 5
+
+Задачи
+1. С помощью debugger проанализировать почему так получается ?
+2. С помощью замыкания сделать так, чтобы при клике на элемент
+   li получали его номер
+3. Выполнить задачу 2 но при этом используя объявление
+   итерационной переменной через let
+*/
+
+
+var d = document,
+        list = d.getElementById('list'),
+        els = list.getElementsByTagName('li'),
+        len = els.length;
+
+for (var i = 0; i < len; i++) {
+    els[i].onclick = function(){
+        alert(i);
+    };
+}
+
+
+
+
+
+
+</script>
+</div>
+</body>
+</html>
