@@ -15,7 +15,7 @@
 <script>
 
 
-var makeCount = (function (){
+var makeCount = () => {
      var count = 0;
 
         function set (){
@@ -31,21 +31,21 @@ var makeCount = (function (){
             set:set
         };
 
-}());
+};
 
 /*
   Сейчас код работает так, что нельзя создать
   независимые счетчики, например
 */
 
-var c1 = makeCount;
+var c1 = makeCount();
 c1.set();
 c1.set();
 c1.set();
 assert(true, "==== c1 ====");
 c1.show();  // выводит 3
 
-var c2 = makeCount;
+var c2 = makeCount();
 c2.set();
 assert(true, "==== c2 ====");
 c2.show(); // выводит 4 а должен вывести  1
