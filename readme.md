@@ -167,11 +167,15 @@
 
 ## Материалы
 ---
-https://regex101.com/
-https://www.youtube.com/watch?v=8aGhZQkoFbQ
-http://latentflip.com/loupe/
-https://www.codewars.com/kata/closures-and-scopes/train/javascript
-https://www.youtube.com/watch?v=jTGb4t31vCY&list=WL&index=2&t=0s
-https://github.com/azat-io/you-dont-know-js-ru/blob/master
-https://github.com/urfu-2015/guides/blob/master/how-to-pull-request.md
+* https://regex101.com/
+* https://www.youtube.com/watch?v=8aGhZQkoFbQ
+* http://latentflip.com/loupe/
+* https://www.codewars.com/kata/closures-and-scopes/train/javascript
+* https://www.youtube.com/watch?v=jTGb4t31vCY&list=WL&index=2&t=0s
+* https://github.com/azat-io/you-dont-know-js-ru/blob/master
+* https://github.com/urfu-2015/guides/blob/master/how-to-pull-request.md
 ---
+* https://www.youtube.com/watch?v=1JsJx1x35c0
+* https://www.youtube.com/watch?v=H1sz16xax4w
+* https://github.com/azat-io/you-dont-know-js-ru/blob/master/scope%20%26%20closures/ch5.md
+* https://medium.com/@sshambir/%D0%BE%D1%81%D0%B2%D0%B0%D0%B8%D0%B2%D0%B0%D0%B5%D0%BC-%D0%B7%D0%B0%D0%BC%D1%8B%D0%BA%D0%B0%D0%BD%D0%B8%D1%8F-%D0%B2-javascript-5b83267ef7d1

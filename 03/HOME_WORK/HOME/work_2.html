@@ -19,6 +19,13 @@
 *   Например  sum(3)(1) -> 4  , sum(7)(-1) -> 6
 * */
 
+function sum(a) {
+    return function (b) {
+        return a + b;
+    }
+}
+
+console.log(sum(4)(8));
 
 </script>
 </div>
