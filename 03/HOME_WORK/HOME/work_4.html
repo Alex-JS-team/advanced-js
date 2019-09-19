@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+ <head>
+    <title>JavaScript - work_1.html</title>
+    <meta charset="utf-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+     <link rel="stylesheet" href="../_/css/style.css">
+	 <script src="../_/js/script.js"></script>
+ </head>
+<body>
+<div class="container">
+<h2>index.html</h2>
+<ul id="results"></ul>
+<!-- ************************* -->
+<script>
+
+
+var makeCount = (function (){
+     var count = 0;
+
+        function set (){
+           return ++count;
+        }
+
+        function show(){
+            assert(true, count);
+        }
+
+        return {
+            show:show,
+            set:set
+        };
+
+}());
+
+/*
+  Сейчас код работает так, что нельзя создать
+  независимые счетчики, например
+*/
+
+var c1 = makeCount;
+c1.set();
+c1.set();
+c1.set();
+assert(true, "==== c1 ====");
+c1.show();  // выводит 3
+
+var c2 = makeCount;
+c2.set();
+assert(true, "==== c2 ====");
+c2.show(); // выводит 4 а должен вывести  1
+assert(true, "==== c1 ====");
+c1.show(); // выводит 4 а должен вывести  3
+
+/*
+ Исправить код  функции makeCount  и код ее вызова так, чтобы можно было создать независимые счетчики
+ То есть  с2 должен работать независимо от c1
+ Подсказка
+  - для того чтобы счетчики были независимыми, надо чтобы для каждого из
+    была своя переменная count. А это можно осуществить если эта переменная
+    count  будет в  замыкании для каждого счетчика.
+ */
+
+
+
+
+
+
+</script>
+</div>
+</body>
+</html>

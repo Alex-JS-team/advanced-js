@@ -20,5 +20,5 @@ function format(phone) {
     return newPhone;
 }
 
-var result = format(st);
-result.forEach(number => console.log(number))
+
+console.log(format(st));

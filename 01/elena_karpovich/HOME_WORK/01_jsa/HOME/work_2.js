@@ -24,5 +24,14 @@ var movies = [
     }
 ];
 
-var actors = movies.reduce((acc, { casts }) => [...acc, ...casts.filter(actor => !acc.some(currentActor => actor === currentActor))], [])
-console.log(actors)
+let actors = movies.reduce(function(acc, current) {
+    let newActors = [];
+    current.casts.forEach (function (item) {
+        if (acc.indexOf(item) === -1) {
+            newActors.push(item);
+        }
+    });
+    return [...acc, ...newActors];
+}, []);
+
+console.log(actors.length);
