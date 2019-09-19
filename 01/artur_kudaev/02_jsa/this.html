@@ -1,0 +1,185 @@
+<!doctype html>
+<html>
+ <head>
+    <title>this</title>
+    <meta charset="utf-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="_/css/style.css">
+	<script src="_/js/script.js"></script>
+ </head>
+<body>
+<div class="container">
+<h1>index.html</h1>
+<ul id="results"></ul>
+<!-- ************************* -->
+<script>
+/*
+ 1. В  Global Execution Context  this указывает на window
+*/
+ // assert(this === window, 'this -> window');
+
+
+/*
+ 2.  Если функция определена в глобальном контексте,
+     то у нее this указывает на window
+ */
+
+/*
+function test(){
+    assert(this === window, "функция определена в глобальном контексте, this -> window");
+}
+test();
+*/
+
+
+/*
+ 3.  Если функция определена  как метод объекта, у нее this указывает на этот объект
+ */
+ /*
+ var person = {
+     firstName: 'John',
+     lastName: 'Doe',
+     sayHi: function(){
+         assert(true, 'Hello ' + this.firstName + ' ' + this.lastName);
+     }
+ };
+person.sayHi();
+*/
+
+/*
+ 4.  Если функция вызывается относительно объекта, у нее this  указывает на этот объект
+ */
+
+/*
+function whoIs(){
+    assert(true, this.name + ' id ' + this.position);
+}
+
+var hero1 = {
+    name: 'Peter Parker',
+    position: 'spiderman',
+    whoIs: whoIs
+};
+var hero2 = {
+    name: 'Bruce Wayne',
+    position: 'batman',
+    whoIs: whoIs
+};
+hero1.whoIs();
+hero2.whoIs();
+*/
+
+/*
+ 5.  Если функция является конструктором объекта то
+     у нее this  указывает на этот объект
+ */
+/*
+function Person(){
+    this.test = function(){
+        return this;
+    };
+}
+
+var ob1 = new Person();
+var ob2 = new Person();
+assert(ob1.test() === ob1, 'this -> ob1');
+assert(ob2.test() === ob2, 'this -> ob2');
+*/
+
+/*
+ 6.  Метод bind позволяет заменить контекст функции  this,
+     при этом возвращает новую функцию (копию той, относительно которой вызывается bind)
+     с указанным в bind контекстом this
+ */
+
+
+/*
+var person = {
+    firstName: 'Fill',
+    lastName: 'Esposito',
+    getFullName: function(){
+        return this.firstName + " " + this.lastName;
+    }
+};
+ */
+
+ /*
+function log(){
+    assert(true, this.getFullName());
+}
+// если вызвать напрямую log() - то будет ошибка так как this указывает на window
+// а в объекте window  нет функции  getFullName()
+
+var myLog = log.bind(person);
+myLog();
+*/
+
+// Или можно использовать bind так
+/*
+var log = function (){
+    assert(true, this.getFullName());
+}.bind(person);
+
+log();
+*/
+
+// Применение call, apply
+
+
+/*
+var person = {
+    firstName: 'Fill',
+    getFullName: function () {
+        return this.firstName;
+    }
+};
+
+function log(lang){
+   var greet;
+   if(lang == 'en') {
+       greet = 'Hello';
+   }
+   if(lang == 'es') {
+       greet = 'Hola';
+   }
+   assert(true, greet + " " + this.getFullName());
+
+}
+
+log.call(person, 'en');
+log.call(person, 'es');
+*/
+
+
+
+
+
+
+/*  Внимание !!!
+*    Особенность, про которую любят спрашивать на собеседовании
+*    В функции определенной в методе объекта, как function declaration
+*    или как function expression this указывает на window
+*/
+/*
+var person = {
+    name: 'George',
+    greet: function(){
+        assert(this === person, "this -> person");
+        function test(){
+            assert(this === person, "Function insite method -> person");
+            assert(this === window, "Function insite method -> window");
+        }
+        test();
+    }
+};
+person.greet();
+*/
+
+
+
+
+
+</script>
+</div>
+</body>
+</html>
