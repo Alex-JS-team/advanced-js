@@ -23,3 +23,6 @@ var movies = [
         casts: ["Christian Bale", "Gary Oldman", "Joseph Gordon-Levitt", "Tom Hardy", "Anne Hathaway", "Marion Cotillard", "Morgan Freeman", "Michael Kanie"]
     }
 ];
+
+var actors = movies.reduce((acc, { casts }) => [...acc, ...casts.filter(actor => !acc.some(currentActor => actor === currentActor))], [])
+console.log(actors)
