@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Photos async await</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Photos</h1>
+      <div id="spinner" class="hide lds-dual-ring"></div>
+      <div class="row" id="photos"></div>
+    </div>
+
+    <script>
+      const url =
+        "https://jsonplaceholder.typicode.com/photos?_page=1&_limit=10";
+      let photosBox = document.getElementById("photos");
+      const spinner = document.getElementById("spinner");
+
+
+    </script>
+  </body>
+</html>
