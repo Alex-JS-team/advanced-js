@@ -55,21 +55,6 @@ function infoGetter (state) {
   }
 }
 
-function ShopProduct (title, price) {
-  var state = {
-    title,
-    price,
-  }
-
-  return Object.assign(
-    priceGetter(state),
-    priceSetter(state),
-    titleGetter(state),
-    titleSetter(state),
-    infoGetter(state)
-  )
-}
-
 function CDProduct (title, price, playLength) {
   var state = {
     title,
