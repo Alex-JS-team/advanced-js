@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Photos promises</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <style>
+      .card {
+        width: 20rem !important;
+        height: 28rem !important;
+      }
+      a  {
+        color: inherit;
+      }
+    </style>
+    <div class="container">
+      <h1>Photos</h1>
+      <div id="spinner" class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="card-group" id="photos"></div>
+    </div>
+
+    <script>
+      const url = 'https://jsonplaceholder.typicode.com/photos?_page=1&_limit=10'
+      const photosBox = document.querySelector("#photos")
+      const spinner = document.querySelector("#spinner")
+
+      fetch(url)
+        .then(res => res.json())
+        .then(data => {
+          if (data) {
+            spinner.style.display = 'none'
+
+            data.forEach(({ id, albumId, thumbnailUrl, title, url }) => {
+              photosBox.innerHTML += `
+                <a href="${url}">
+                  <div class="card">
+                    <img src="${thumbnailUrl}" class="card-img-top" alt="image">
+                    <div class="card-body">
+                      <h5 class="card-title">${title}</h5>
+                      <p class="card-text">Album ID: ${albumId}</p>
+                    </div>
+                  </div>
+                </a>
+              `
+            })
+          }
+        })
+    </script>
+  </body>
+</html>
