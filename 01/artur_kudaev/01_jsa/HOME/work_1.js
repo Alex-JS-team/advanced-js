@@ -15,6 +15,12 @@ function splitNumber(str) {
   return str.map(el=> el.match(/\d/g).join('').replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2 $3"));
 }
 
-console.log(splitNumber(str));
+//console.log(splitNumber(str));
+
+const arr = [1,2,3,4,5,6,7,8,11,4545];
+
+const res = arr.reduce((total, item)=> total + item)
+
+console.log(res)
 
 

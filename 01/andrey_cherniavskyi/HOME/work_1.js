@@ -22,4 +22,4 @@ function format(number) {
     return newNumber;
 }
 
-console.log(format(newNumber));
+console.log(format(st));

@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+ <head>
+    <title>Function declaration</title>
+    <meta charset="utf-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="_/css/style.css">
+	<script src="_/js/script.js"></script>
+ </head>
+<body>
+<div class="container">
+<h1>Function declaration</h1>
+
+<ul id="results"></ul>
+<!-- ************************* -->
+<script>
+
+/*  
+Функции, которые декларированы как function declaration 
+можно вызывать до их объявления.
+*/
+myFunc();
+function myFunc(){
+	print("function declaration<br>");
+}
+
+var anotherFunc = function(){
+	print("function expression<br>");
+}
+anotherFunc();
+
+/*
+var answer = prompt("Сколько будет 2+2 ?");
+if(answer == 4){
+	function checkAnswer(){
+		return true;
+	}
+} else {
+	function checkAnswer(){
+		return confirm("Вы уверены ?");
+	}
+}
+
+ print(checkAnswer() ? "<h2>Правильно</h2>": "<h2>Не правильно</h2>");
+ */
+
+/* =========  Вызов функции на месте ========= */
+/*
+ print("<br>" + myLocalVar);
+var myLocalVar = "Hello from this file";
+ print("<br>" + myLocalVar);
+*/
+
+
+/* Когда объявляется именованная функция, создается переменная с 
+   таким же именем. 
+*/
+/*
+function f(){
+	return "Hello from function f";
+}
+ print("<br>" + f);
+var  t = f;
+document.write("<br>" + t());
+*/
+
+
+
+
+
+</script>
+</div>
+</body>
+</html>
