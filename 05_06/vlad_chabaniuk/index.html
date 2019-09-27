@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <title>Index</title>
+  </head>
+  <body>
+    <style>
+      .card {
+        width: 30rem !important;
+        /* height: 28rem !important; */
+      }
+      a  {
+        color: inherit;
+      }
+    </style>
+    <div class="container">
+      <h1>Posts</h1>
+      <div id="spinner" class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="row" id="posts"></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+      window.onload = async () => {
+        const url = 'https://jsonplaceholder.typicode.com/posts?_page=1&_limit=10'
+        const postsBox = document.querySelector("#posts")
+        const spinner = document.querySelector("#spinner")
+
+        const postsRes = await fetch(url)
+        const postsData = await postsRes.json()
+
+        if (postsData) {
+          spinner.style.display = 'none'
+
+          console.log(postsData)
+
+          postsData.forEach(async ({id, title, body, userId}) => {
+            const userRes = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
+            const userData = await userRes.json()
+
+            console.log(userData)
+
+            const { id: currentUserId, username, name, email } = userData
+
+            postsBox.innerHTML += `
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">${title}</h5>
+                  <p class="card-text">${body}</p>
+                  <div class="dropdown show">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Author
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <ul class="list-group">
+                        <li class="list-group-item">Name: ${name}</li>
+                        <li class="list-group-item">Username: ${username}</li>
+                        <li class="list-group-item">Email: ${email}</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `
+          })
+        }
+      }
+    </script>
+  </body>
+</html>
