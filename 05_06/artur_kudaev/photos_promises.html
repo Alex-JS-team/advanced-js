@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Photos promises</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <style>
+    .lds-dual-ring {
+      position: fixed;
+      top: 50%;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      }
+    .row {
+      display: flex;
+      flex-flow: row wrap;
+      }
+
+    .item {
+      width: 300px;
+      transition: all .2s;
+      padding: 10px;
+      border: 1px solid grey;
+      border-radius: 3px;
+      margin-bottom: 20px;
+      margin-right: 20px;
+      }
+    .item:hover {
+      background-color: #80c0ff;
+      }
+    .item img {
+      display: block;
+      margin: 0 auto 20px;
+      }
+  </style>
+  <body>
+    <div class="container">
+      <h1>Photos</h1>
+      <div id="spinner" class="lds-dual-ring"></div>
+      <div class="row" id="photos"></div>
+    </div>
+
+    <script>
+      const url =
+        "https://jsonplaceholder.typicode.com/photos?_page=1&_limit=10";
+      let photosBox = document.getElementById("photos");
+      const spinner = document.getElementById("spinner");
+
+      fetch(url)
+        .then(res => res.json())
+        .then(res=> {
+          res ?
+            res.map(({albumId, id, title, url, thumbnailUrl})=> {
+              spinner.classList.add('hide');
+              photosBox.innerHTML += `
+                <div class="item">
+                  <img src="${thumbnailUrl}" alt=""/>
+                  <h5>${title}</h5>
+                  <p>ID: ${id}</p>
+                  <p>Albom ID: ${albumId}</p>
+                </div>
+              `
+            })
+            :
+              spinner.classList.remove('hide');
+            })
+    </script>
+  </body>
+</html>
