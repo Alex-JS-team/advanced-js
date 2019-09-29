@@ -1,4 +1,3 @@
-
 (function(){
     this.assert = function(ob, st) {
         var li = document.createElement("li");
