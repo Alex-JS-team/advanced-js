@@ -11,10 +11,6 @@ Option.propTypes = {
   name: PropTypes.string
 };
 
-Option.propTypes = {
-  name: PropTypes.string
-};
-
 Option.defaultProps = {
   name: 'Not Found'
 };
