@@ -2,9 +2,9 @@ import React from 'react'
 import { string } from 'prop-types'
 
 const propTypes = {
-	name: string,
-	email: string,
-	username: string
+  name: string,
+  email: string,
+  username: string
 }
 
 const User = ({ name, username, email }) => (
