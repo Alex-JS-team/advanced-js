@@ -1,48 +1,39 @@
-function iCantThinkOfAName(num, obj) {
-  // This array variable, along with the 2 parameters passed in,
-  // are 'captured' by the nested function 'doSomething'
-  var array = [1, 2, 3];
-  function doSomething(i) {
-    num += i;
-    array.push(num);
-    console.log('num: ' + num);
-    console.log('array: ' + array);
-    console.log('obj.value: ' + obj.value);
+class Clock {
+  constructor({template}) {
+    this.template = template;
   }
 
-  return doSomething;
+
+  render() {
+    let date = new Date();
+
+    let hours = date.getHours();
+    if (hours < 10) hours = '0' + hours;
+
+    let mins = date.getMinutes();
+    if (mins < 10) mins = '0' + mins;
+
+    let secs = date.getSeconds();
+    if (secs < 10) secs = '0' + secs;
+
+    let output = this.template
+        .replace('h', hours)
+        .replace('m', mins)
+        .replace('s', secs);
+
+    console.log(output);
+  }
+
+  stop () {
+    clearInterval(this.timer);
+  };
+
+  start () {
+    this.render();
+    this.timer = setInterval(() => this.render(), 1000);
+  };
+
 }
 
-var referenceObject = { value: 10 };
-var foo = iCantThinkOfAName(2, referenceObject); // closure #1
-var bar = iCantThinkOfAName(6, referenceObject); // closure #2
-
-foo(2);
-/*
-  num: 4
-  array: 1,2,3,4
-  obj.value: 10
-*/
-
-//bar(2);
-/*
-  num: 8
-  array: 1,2,3,8
-  obj.value: 10
-*/
-
-//referenceObject.value++;
-
-//foo(4);
-/*
-  num: 8
-  array: 1,2,3,4,8
-  obj.value: 11
-*/
-
-//bar(4);
-/*
-  num: 12
-  array: 1,2,3,8,12
-  obj.value: 11
-*/
+let clock = new Clock({template: 'h:m:s'});
+clock.start();

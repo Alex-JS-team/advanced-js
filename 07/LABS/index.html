@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>conditionally rendering</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .container {
+        max-width: 80%;
+        margin: auto;
+      }
+      .title {
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+      .nav {
+        display: grid;
+        grid-gap: 1rem;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        padding-bottom: 2rem;
+      }
+      .nav__item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #22556e;
+        padding: 1rem;
+        text-align: center;
+        text-decoration: none;
+        font-size: 1.1rem;
+        color: #fff;
+      }
+      .nav__item:hover {
+        background: #4799b7;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="title">Basic React</h1>
+      <div class="nav">
+        <a class="nav__item" href="01_first_app/index.html">01_first_app</a>
+        <a class="nav__item" href="02_jsx/index.html">02_JSX</a>
+        <a class="nav__item" href="03_components/index.html">03_Components</a>
+        <a class="nav__item" href="04_props_validate/index.html"
+          >04 props validate</a
+        >
+        <a class="nav__item" href="05_conditionally_render/index.html"
+          >05 conditionally render</a
+        >
+        <a class="nav__item" href="06_style_component/index.html"
+          >06 style component</a
+        >
+        <a class="nav__item" href="07_state_basic/index.html">07 state basic</a>
+        <a class="nav__item" href="08_event_handler/index.html"
+          >08 event handler</a
+        >
+        <a class="nav__item" href="09_lifecycle/index.html">09 lifecycle</a>
+        <a class="nav__item" href="10_form/index.html">10 Forms</a>
+        <a class="nav__item" href="11_key_prop/index.html">11 key props</a>
+        <a class="nav__item" href="12_dynamicly_generate_components/index.html"
+          >12_dynamicly generate components</a
+        >
+      </div>
+
+      <h1 class="title">HOME</h1>
+      <div class="nav">
+        <a class="nav__item" href="HOME/index.html">Index.html</a>
+      </div>
+    </div>
+    <!-- /.container -->
+
+    <script>
+      document
+        .querySelectorAll(".nav__item")
+        .forEach(item => (item.target = "_blank"));
+    </script>
+  </body>
+</html>
