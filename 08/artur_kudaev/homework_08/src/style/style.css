@@ -1,0 +1,50 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+header {
+    text-align: center;
+    padding: 15px;
+    background: linear-gradient(to bottom, #777, #eee);
+}
+
+footer {
+    padding: 15px;
+    background: linear-gradient(to top, #777, #eee);
+}
+
+footer p {
+    text-align: center;
+    font-style: italic;
+}
+
+main {
+    padding: 25px;
+    flex-grow: 1;
+}
+
+.item {
+    width: 220px;
+    height: 100px;
+    padding: 15px;
+    display: inline-block;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border-radius: 3px;
+    border: 1px solid grey;
+}
+
+select {
+    display: block;
+    width: 220px;
+    margin-bottom: 20px;
+}
