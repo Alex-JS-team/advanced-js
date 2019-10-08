@@ -13,7 +13,7 @@ export default class Content extends React.Component {
   }
 
   filterItems = (index) => {
-    this.index = index;
+    //this.index = index;
     index === 'All' ?
       this.setState({
         filterData: this.state.data
