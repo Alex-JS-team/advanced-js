@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import UserList from './components/UserList'
 
 export class App extends React.Component {
@@ -27,18 +27,19 @@ export class App extends React.Component {
       }
     ]
   }
+
   checkHandle = (id) => {
     console.log(id)
-    const newUsersState = this.state.users.map( user => {
-      if (user.id === id){
-        user.checked = !user.checked 
-      } 
-      return user;
+    const newUsersState = this.state.users.map(user => {
+      if (user.id === id) {
+        user.checked = !user.checked
+      }
+      return user
     })
-    this.setState({users: newUsersState})
+    this.setState({ users: newUsersState })
   }
-  render() {
-    
+
+  render () {
     return (
       <div>
         <UserList users={this.state.users} checkHandle={this.checkHandle}/>
