@@ -2,6 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import User from "./user";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { BarChart } from 'react-chartkick'
+import 'chart.js'
+import './style.css'
 
 class App extends React.Component {
   constructor() {
@@ -9,13 +12,14 @@ class App extends React.Component {
 
     this.state = {
       data: [],
-      value: null
+      value: null,
+      searchUrl: 'https://api.github.com/search/users?q='
     }
 
   }
 
-  allUsers = () => {
-    fetch(`https://api.github.com/search/users?q=tom&sort=followers`)
+  fetchFunc = (url) => {
+    fetch(url)
         .then(response => response.json())
         .then(response => {
           this.setState({
@@ -24,24 +28,20 @@ class App extends React.Component {
         })
   }
 
+
   componentDidMount() {
-    this.allUsers()
+    this.fetchFunc(`${this.state.searchUrl}tom`)
   }
 
   getUsers = () => {
 
     this.state.value ?
 
-      fetch(`https://api.github.com/search/users?q=${this.state.value}`)
-        .then(response => response.json())
-        .then(response => {
-          this.setState({
-            data: response.items
-          }, console.log(this.state.data))
-        })
+        this.fetchFunc(this.state.searchUrl+this.state.value)
 
         :
-        this.allUsers()
+
+        this.fetchFunc(`${this.state.searchUrl}tom`)
     }
 
   inputValue = (e) => {
@@ -50,8 +50,10 @@ class App extends React.Component {
     }, console.log(this.state.value, 'value-input'))
   }
 
+
   render() {
     const {data} = this.state;
+    console.log([...data.map(el=>[`${el.login}`, el.score])])
     return (
         <React.Fragment>
 
@@ -63,10 +65,17 @@ class App extends React.Component {
               </div>
           </div>
 
-
-
-          <div>
-            {data.map(el => <User key={el.id} img={el.avatar_url} login={el.login} />)}
+          <div className="wrap">
+            <div className="users">
+              {data.map(el => <User
+                  key={el.id}
+                  score={el.score}
+                  img={el.avatar_url}
+                  login={el.login}
+                  link={el.html_url}
+              />)}
+            </div>
+            <BarChart data={[...data.map(el=>[`${el.login}`, el.score])]} />
           </div>
 
         </React.Fragment>
