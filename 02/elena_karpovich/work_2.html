@@ -25,61 +25,59 @@
 </div>
 <script>
 
-
 // 1. Сгрупировать пользователей по возрасту и вывести
 //    в элемент select с value=""
 
-// 2. При віборе соответствующего option осуществить вывод
+// 2. При выборе соответствующего option осуществить вывод
 //    соответствующих пользователей в элемент <div id="res"></div>
 
+    const usersSelect = document.getElementById('users-select');
+    const res = document.getElementById('res');
 
-const usersSelect = document.getElementById('users-select');
-const res = document.getElementById('res');
+    let users = [
+    {id: 1, name: "John", age: "20"},
+    {id: 2, name: "Sasha", age: "30"},
+    {id: 3, name: "Bill", age: "40"},
+    {id: 4, name: "Ashley", age: "20"},
+    {id: 5, name: "Rachel", age: "40"},
+    {id: 6, name: "Tom", age: "30"},
+    {id: 7, name: "Steve", age: "30"},
+    {id: 8, name: "Jim", age: "40"},
+    {id: 9, name: "Willy", age: "20"}
+    ];
 
-let users = [
- {id: 1, name: "John", age: "20"},
- {id: 2, name: "Sasha", age: "30"},
- {id: 3, name: "Bill", age: "40"},
- {id: 4, name: "Ashley", age: "20"},
- {id: 5, name: "Rachel", age: "40"},
- {id: 6, name: "Tom", age: "30"},
- {id: 7, name: "Steve", age: "30"},
- {id: 8, name: "Jim", age: "40"},
- {id: 9, name: "Willy", age: "20"}
-];
+    let usersAges = users.map(function (user) {
+        return user.age;
+    });
 
-let usersAges = users.map(function (user) {
-    return user.age;
-});
+    let unicAge = usersAges.filter(function(age, index) {
+        return usersAges.indexOf(age) === index;
+    });
 
-let unicAge = usersAges.filter(function(age, index) {
-    return usersAges.indexOf(age) === index;
-});
+    unicAge.forEach(function(elem) {
+        elem = '<option value="' + elem + '">' + elem + '</option>';
+        usersSelect.innerHTML += elem;
+    });
 
-unicAge.forEach(function(elem) {
-    elem = '<option value="' + elem + '">' + elem + '</option>';
-    usersSelect.innerHTML += elem;
-});
-
-let selectedType = "0";
-function ageFilter(e) {
-    selectedType = e.value;
-    let result = "";
-    let renderAge = [];
-    for (let i = 0; i < users.length; i++) {
-        if (users[i].age === selectedType || selectedType === "0") {
-            renderAge.push(users[i]);
+    let selectedType = "0";
+    function ageFilter(e) {
+        selectedType = e.value;
+        let result = "";
+        let renderAge = [];
+        for (let i = 0; i < users.length; i++) {
+            if (users[i].age === selectedType || selectedType === "0") {
+                renderAge.push(users[i]);
+            }
         }
+        for (let y=0; y < renderAge.length; y++) {
+            result += renderUsersArr(renderAge[y]);
+        }
+        res.innerHTML = result;
     }
-    for (let y=0; y < renderAge.length; y++) {
-        result += renderUsersArr(renderAge[y]);
-    }
-    res.innerHTML = result;
-}
 
-function renderUsersArr(item) {
-    return '<h4>'+ item.name + ':' + ' ' + item.age +' years</h4>'
-}
+    function renderUsersArr(item) {
+        return '<h4>'+ item.name + ':' + ' ' + item.age +' years</h4>'
+    }
 
 </script>
 
