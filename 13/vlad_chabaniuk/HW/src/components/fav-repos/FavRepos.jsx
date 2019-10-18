@@ -4,7 +4,7 @@ import { getRespos } from '../../javascripts/utils'
 
 const FavRepos = () => {
   const [repos, setRepos] = useState(getRespos(localStorage))
-  console.log(Object.keys(localStorage))
+
   return (
     <>
       <h3 className='text-center mt-3 mb-3'>Favorite repos</h3>
