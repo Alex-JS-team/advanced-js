@@ -1,0 +1,15 @@
+body {
+  background-color: #eee;
+}
+
+i:hover {
+  cursor: pointer;
+}
+
+.lead {
+  margin-bottom: 0 !important;
+}
+
+.tg {
+  color: #747373 !important;
+}
