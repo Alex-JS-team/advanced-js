@@ -1,0 +1,53 @@
+* {
+    box-sizing: border-box;
+    }
+
+.lds-circle {
+    display: inline-block;
+    transform: translateZ(1px);
+    margin: auto;
+    }
+.lds-circle > div {
+    display: inline-block;
+    width: 151px;
+    height: 151px;
+    margin: 6px;
+    border-radius: 50%;
+    background: linear-gradient(to right, #00FFFF, #FFFF00);
+    animation: lds-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+    }
+@keyframes lds-circle {
+    0%, 100% {
+        animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
+        }
+    0% {
+        transform: rotateY(0deg);
+        }
+    50% {
+        transform: rotateY(1800deg);
+        animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
+        }
+    100% {
+        transform: rotateY(3600deg);
+        }
+    }
+
+.card-wrap {
+    display: flex;
+    flex-flow: row wrap;
+    margin-top: 20px;
+}
+
+.card {
+    width: 230px;
+    padding: 15px;
+    border: 1px solid #000;
+    border-radius: 3px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    }
+
+#root {
+    display: flex;
+    height: 100vh;
+    }
