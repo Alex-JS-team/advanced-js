@@ -1,6 +1,10 @@
 # Default ignored files
 /workspace.xml
 .idea
+
 .vscode
 /node_modules/
 /package-lock.json
+
+/node_modules
+
