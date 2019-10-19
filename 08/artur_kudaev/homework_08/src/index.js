@@ -4,6 +4,7 @@ import Header from './components/header'
 import './style/style.css'
 import Footer from "./components/footer";
 import Content from "./components/content";
+import Form from "./components/form";
 
 class App extends React.Component {
 
@@ -11,6 +12,7 @@ class App extends React.Component {
     return(
         <React.Fragment>
           <Header text='Header'/>
+          <Form />
           <Content/>
           <Footer copy={'#copy'}/>
         </React.Fragment>
