@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.container {
+    margin: 2rem 0;
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+}
+input[type='text'] {
+    border: 1px solid navy;
+}
+
+.img-box {
+    max-width: 150px;
+    margin-left: 1rem;
+}
+img {
+    width: 100%;
+    max-width: 100%;
+}

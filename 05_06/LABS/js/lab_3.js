@@ -1,15 +1,33 @@
+const getUsersPromise = new Promise((resolve, reject) => {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://jsonplaceholder.typicode.com/users');
+    xhr.onreadystatechange = handleResponse;
+    xhr.send();
 
-var xhr = new XMLHttpRequest();
-xhr.open('GET', 'http://jsonplaceholder.typicode.com/users');
-xhr.onreadystatechange = handleResponse;
-xhr.send();
-
-function handleResponse(){
-    if(xhr.readyState == 4 && xhr.status === 200) {
-        var users = JSON.parse(xhr.response);
-         addUsersToPage(users);
+    function handleResponse(){
+        console.log(xhr.readyState);
+        if(xhr.readyState == 4 && xhr.status === 200) {
+            var users = JSON.parse(xhr.response);
+            resolve(users);
+        } else if (xhr.readyState == 4){
+            reject(xhr.status);
+        } 
     }
-}
+});
+
+getUsersPromise
+    .then((result) => console.log(result));
+
+fetch('http://jsonplaceholder.typicode.com/users')
+.then(function(response) {
+    debugger;
+    return response.json();
+})
+.then(function(myJson) {
+    debugger;
+    console.log(JSON.stringify(myJson));
+});
+
 
 function generateListItem(users) {
   
