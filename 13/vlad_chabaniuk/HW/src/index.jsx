@@ -10,6 +10,8 @@ import { createHttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { setContext } from 'apollo-link-context'
+import { Provider } from 'react-redux'
+import store from './redux/store/index'
 
 const defaultOptions = {
   watchQuery: {
@@ -28,7 +30,7 @@ const authLink = setContext((_, { headers }) => (
   {
     headers: {
       ...headers,
-      authorization: 'bearer c6fa618629cd5d770c2cb5a725fc31993147ab4b'
+      authorization: 'bearer ad8907b6c97c36143511d57a59a314b1638eebf1'
     }
   }
 ))
@@ -42,11 +44,13 @@ const client = new ApolloClient({
 })
 
 ReactDOM.render(
-  <Router>
-    <ApolloProvider client={client}>
-      <App />
-    </ApolloProvider>
-  </Router>,
+  <Provider store={store}>
+    <Router>
+      <ApolloProvider client={client}>
+        <App />
+      </ApolloProvider>
+    </Router>
+  </Provider>,
   document.querySelector('#root')
 )
 

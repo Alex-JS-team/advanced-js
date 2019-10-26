@@ -1,19 +1,20 @@
-import React, { useState } from 'react'
+import React from 'react'
 import ReposList from '../browse-repos/ReposList'
-import { getRespos } from '../../javascripts/utils'
+import { mapStateToProps } from '../../redux/store'
+import { connect } from 'react-redux'
+import { array } from 'prop-types'
 
-const FavRepos = () => {
-  const [repos, setRepos] = useState(getRespos(localStorage))
+const propTypes = { favRepos: array }
 
-  return (
-    <>
-      <h3 className='text-center mt-3 mb-3'>Favorite repos</h3>
-      <ReposList
-        repos={repos}
-        setRepos={setRepos}
-      />
-    </>
-  )
-}
+const FavRepos = ({ favRepos }) => (
+  <>
+    <h3 className='text-center mt-3 mb-3'>Favorite repos</h3>
+    <ReposList
+      repos={favRepos}
+    />
+  </>
+)
 
-export default FavRepos
+FavRepos.propTypes = propTypes
+
+export default connect(mapStateToProps)(FavRepos)

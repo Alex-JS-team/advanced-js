@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { updateIsStarredState } from '../../javascripts/utils'
 import { string, func, object, array } from 'prop-types'
+import { connect } from 'react-redux'
+import { mapDispatchToProps, mapStateToProps } from '../../redux/store'
 
 const propTypes = {
   id: string,
@@ -10,7 +11,10 @@ const propTypes = {
   owner: object,
   languages: array,
   licenseInfo: object,
-  setRepos: func
+  setRepos: func,
+  favRepos: array,
+  removeFromFav: func,
+  addToFav: func
 }
 
 const ReposListItem = ({
@@ -20,9 +24,28 @@ const ReposListItem = ({
   licenseInfo,
   owner,
   languages,
-  setRepos
+  favRepos,
+  addToFav,
+  removeFromFav
 }) => {
-  const [isStarred, setIsStarred] = useState(localStorage.getItem(name))
+  const [isStarred, setIsStarred] = useState(favRepos.find(repo => repo.id === id))
+
+  const handleStar = () => {
+    if (isStarred) {
+      removeFromFav(id)
+    } else {
+      addToFav({
+        id,
+        name,
+        description,
+        licenseInfo,
+        owner,
+        languages
+      })
+    }
+
+    setIsStarred(!isStarred)
+  }
 
   return (
     <div key={id} className='col-md-6'>
@@ -32,17 +55,7 @@ const ReposListItem = ({
             <i
               className={`fa${isStarred ? 's' : 'r'} fa-star`}
               title={`${isStarred ? 'Remove from' : 'Add to'} favorites`}
-              onClick={() => updateIsStarredState(
-                isStarred,
-                localStorage,
-                id,
-                name,
-                description,
-                licenseInfo,
-                owner,
-                languages,
-                setIsStarred
-              )(setRepos)}
+              onClick={handleStar}
             />
             &nbsp;
             {name}
@@ -68,4 +81,4 @@ const ReposListItem = ({
 
 ReposListItem.propTypes = propTypes
 
-export default ReposListItem
+export default connect(mapStateToProps, mapDispatchToProps)(ReposListItem)

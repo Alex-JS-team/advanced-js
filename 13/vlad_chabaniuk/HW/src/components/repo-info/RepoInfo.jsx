@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 import Spinner from 'react-md-spinner'
-import { object } from 'prop-types'
-import { updateIsStarredState } from '../../javascripts/utils'
+import { object, array, func } from 'prop-types'
+import { connect } from 'react-redux'
+import { mapStateToProps, mapDispatchToProps } from '../../redux/store'
 
 const REPO_QUERY = gql`
   query Repository($owner: String! $name: String!) {
@@ -33,11 +34,16 @@ const REPO_QUERY = gql`
   }
 `
 
-const propTypes = { match: object }
+const propTypes = {
+  match: object,
+  favRepos: array,
+  addToFav: func,
+  removeFromFav: func
+}
 
-const RepoInfo = ({ match }) => {
+const RepoInfo = ({ favRepos, addToFav, removeFromFav, match }) => {
   const { owner, name } = match.params
-  const [isStarred, setIsStarred] = useState(localStorage.getItem(name))
+  const [isStarred, setIsStarred] = useState(favRepos.find(repo => repo.name === name))
 
   return (
     <Query
@@ -78,17 +84,22 @@ const RepoInfo = ({ match }) => {
                 <i
                   className={`fa${isStarred ? 's' : 'r'} fa-star`}
                   title={`${isStarred ? 'Remove from' : 'Add to'} favorites`}
-                  onClick={() => updateIsStarredState(
-                    isStarred,
-                    localStorage,
-                    id,
-                    name,
-                    description,
-                    licenseInfo,
-                    owner,
-                    languages,
-                    setIsStarred
-                  )()}
+                  onClick={() => {
+                    if (isStarred) {
+                      removeFromFav(id)
+                    } else {
+                      addToFav({
+                        id,
+                        name,
+                        description,
+                        licenseInfo,
+                        owner,
+                        languages
+                      })
+                    }
+
+                    setIsStarred(!isStarred)
+                  }}
                 />
                 {name}
               </h2>
@@ -148,4 +159,4 @@ const RepoInfo = ({ match }) => {
 
 RepoInfo.propTypes = propTypes
 
-export default RepoInfo
+export default connect(mapStateToProps, mapDispatchToProps)(RepoInfo)
