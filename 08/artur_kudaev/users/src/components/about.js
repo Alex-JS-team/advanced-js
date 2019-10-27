@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class About extends React.Component {
+class About extends React.Component {
   constructor(props) {
     super(props);
 
@@ -39,6 +39,7 @@ export default class About extends React.Component {
   }
 
   render() {
+    console.log(this.props.dataR, '----')
     const { userLogin, img, bio, email, company, followers, location, name, url, repos } = this.state;
     return (
       <div className='about'>
@@ -70,3 +71,5 @@ export default class About extends React.Component {
     )
   }
 }
+
+export default About;
