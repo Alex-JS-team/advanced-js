@@ -1,7 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {connect} from "react-redux";
 
-export default class FavoriteItem extends React.Component {
+class FavoriteItem extends React.Component {
   constructor(props) {
     super(props);
 
@@ -12,13 +13,16 @@ export default class FavoriteItem extends React.Component {
   }
 
   componentDidMount() {
-    fetch(this.props.item)
-        .then(response => response.json())
-        .then(response => {
-          this.setState({
-            item: response.login
-          })
-        });
+    fetch(`${this.props.item}`, {
+      headers: {
+        'Authorization': `Bearer ${this.props.token}`
+      }})
+      .then(response => response.json())
+      .then(response => {
+        this.setState({
+          item: response.login
+        })
+      });
   }
 
   render() {
@@ -32,3 +36,10 @@ export default class FavoriteItem extends React.Component {
   }
 
 }
+
+export default connect(
+    store => ({
+      token: store.token
+    }),
+    dispatch => ({})
+)(FavoriteItem);

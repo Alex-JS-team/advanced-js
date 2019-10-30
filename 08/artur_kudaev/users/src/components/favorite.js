@@ -1,6 +1,7 @@
 import React from 'react';
+import {connect} from "react-redux";
 
-export default class Favorite extends React.Component {
+class Favorite extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -10,12 +11,16 @@ export default class Favorite extends React.Component {
   }
 
   componentDidMount() {
-    fetch(this.props.favorite)
+    fetch(this.props.favorite, {
+        headers: {
+          'Authorization': `Bearer ${this.props.token}`
+        }})
         .then(res => res.json())
         .then(res => {
           this.setState({
             link: res.avatar_url,
-            login: res.login
+            login: res.login,
+            loading: false
           })
         })
   }
@@ -24,7 +29,9 @@ export default class Favorite extends React.Component {
     return (
       <>
         <div className="img-wrap">
-          <img className='favorite-img' src={this.state.link} alt='' />
+          <div className='animate-img' ref={(el)=> this.img = el}>
+            <img className='favorite-img' src={this.state.link} alt='' onLoad={()=>this.img.classList.add('loaded')}  />
+          </div>
           <span className='name'>{this.state.login}</span>
           <div onClick={() => {
             this.props.del(this.props.favorite)
@@ -34,3 +41,10 @@ export default class Favorite extends React.Component {
     )
   }
 }
+
+export default connect(
+    store => ({
+      token: store.token
+    }),
+    dispatch => ({})
+)(Favorite);
