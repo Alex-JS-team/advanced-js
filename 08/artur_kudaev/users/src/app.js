@@ -59,7 +59,7 @@ class App extends React.Component {
 
     this.state.value ?
 
-        this.fetchFunc(this.state.searchUrl+this.state.value+`&per_page=${this.props.countPageItemss}&page=${this.props.totalPage}`)
+        this.fetchFunc(this.state.searchUrl+this.state.value+`&per_page=${this.props.countPageItems}&page=${this.props.totalPage}`)
 
         :
 
@@ -129,9 +129,9 @@ class App extends React.Component {
                 :
                 ''
             }
-            <h2>Popular users on GitHub</h2>
             <div className="options-wrap">
-              <CountShowItems/>
+              <h2>Popular users on GitHub</h2>
+              <div>Показывать по: <CountShowItems update={this.getUsers}/></div>
             </div>
             <UsersCount numUsers={this.state.totalCount}/>
             <div className="wrap_user">

@@ -4,15 +4,16 @@ import {connect} from "react-redux";
 class CountShowItems extends React.Component {
   render() {
     return (
-        <select onChange={(e)=> {
-            this.props.setCountPageItems(e.target.value)
-            localStorage.setItem('countPageItems', e.target.value)
+        <select defaultValue={localStorage.getItem('countPageItems') ? localStorage.getItem('countPageItems') : '30'} onChange={(e)=> {
+            this.props.setCountPageItems(e.target.value);
+            this.props.update();
+            localStorage.setItem('countPageItems', e.target.value);
           }
         }>
-          <option>10</option>
-          <option selected>30</option>
-          <option>50</option>
-          <option>100</option>
+          <option value='10'>10</option>
+          <option value='30'>30</option>
+          <option value='50'>50</option>
+          <option value='100'>100</option>
         </select>
     )
   }
