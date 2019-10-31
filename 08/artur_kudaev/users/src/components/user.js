@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
+import 'font-awesome/css/font-awesome.min.css';
 
 class User extends React.Component {
 
@@ -42,14 +43,15 @@ class User extends React.Component {
         </div>
         <div className="card-body">
           <p className="card-text">Login: {this.props.login}</p>
-          <p>Followers: {this.state.countFollowers}</p>
+          <p><i className="fas fa-star"></i>Followers: {this.state.countFollowers}</p>
           <p>Repositorios: {this.state.countRepos}</p>
           <p>Link: <a target='_blank' rel="noopener noreferrer"  href={this.props.link}>{this.props.login}</a></p>
           {
             this.props.favoriteArr.includes(this.state.searchUrl+this.props.login) ?
-              <button onClick={()=>this.props.del(this.state.searchUrl+this.props.login)}>Delete from favorite</button>
+                <div onClick={()=>this.props.del(this.state.searchUrl+this.props.login)}> del</div>
+
               :
-              <button onClick={()=>this.props.favorite(this.props.login)}>Add to favorite</button>
+                <div onClick={()=>this.props.favorite(this.props.login)} > add </div>
           }
         </div>
       </div>

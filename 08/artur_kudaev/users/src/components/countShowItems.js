@@ -6,8 +6,8 @@ class CountShowItems extends React.Component {
     return (
         <select defaultValue={localStorage.getItem('countPageItems') ? localStorage.getItem('countPageItems') : '30'} onChange={(e)=> {
             this.props.setCountPageItems(e.target.value);
-            this.props.update();
             localStorage.setItem('countPageItems', e.target.value);
+            this.props.update();
           }
         }>
           <option value='10'>10</option>

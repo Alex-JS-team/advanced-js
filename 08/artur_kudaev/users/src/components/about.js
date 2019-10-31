@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from "react-redux";
 
 class About extends React.Component {
   constructor(props) {
@@ -20,7 +21,11 @@ class About extends React.Component {
   }
 
   componentDidMount() {
-    fetch(` https://api.github.com/users/${this.props.match.params.login}`)
+    fetch(`https://api.github.com/users/${this.props.match.params.login}`, {
+      headers: {
+        'Authorization': `Bearer ${this.props.token}`
+      }
+    })
         .then(res => res.json())
         .then(res => {
           this.setState({
@@ -72,4 +77,9 @@ class About extends React.Component {
   }
 }
 
-export default About;
+export default connect(
+    store => ({
+      token: store.token
+    }),
+    dispatch => ({})
+)(About);

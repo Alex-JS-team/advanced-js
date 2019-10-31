@@ -27,11 +27,13 @@ class FavoriteItem extends React.Component {
 
   render() {
     return (
-        <Link to={{
-          pathname: `/favorite/${this.state.item}`
-        }}>
-          <p>{this.state.item}</p>
-        </Link>
+        <>
+          <Link to={{
+            pathname: `/favorite/${this.state.item}`
+          }}>
+            <p>{this.state.item}</p>
+          </Link>
+        </>
     )
   }
 

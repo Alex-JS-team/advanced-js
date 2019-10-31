@@ -5,11 +5,12 @@ import Form from "./components/form";
 import FavoriteItem from "./components/favItem";
 import About from "./components/about";
 import Favorite from "./components/favorite";
-import Page from './components/paginationItem'
+//import Page from './components/paginationItem'
 import UsersCount from "./components/userCounter";
 import User from "./components/user";
 import {connect} from "react-redux";
 import CountShowItems from "./components/countShowItems";
+import Spinner from "./components/spinner";
 
 
 class App extends React.Component {
@@ -19,23 +20,39 @@ class App extends React.Component {
     this.state = {
       value: null,
       searchUrl: 'https://api.github.com/search/users?q=',
-      totalCount: ''
+      totalCount: '',
+      spinner: true
     }
 
   }
 
-  fetchFunc = (url) => {
-    fetch(url, {
+  // fetchFunc = (url) => {
+  //   fetch(url, {
+  //     headers: {
+  //         'Authorization': `Bearer ${this.props.token}`
+  //       }})
+  //       .then(response => response.json())
+  //       .then(response => {
+  //         this.setState({
+  //           totalCount: response.total_count
+  //         })
+  //         this.props.setData(response.items)
+  //       })
+  // };
+
+  fetchFunc = async (url) => {
+    await this.setState({spinner: true});
+    const data = await fetch(url, {
       headers: {
           'Authorization': `Bearer ${this.props.token}`
         }})
-        .then(response => response.json())
-        .then(response => {
-          this.setState({
-            totalCount: response.total_count
-          })
-          this.props.setData(response.items)
-        })
+
+    const users = await data.json();
+    this.setState({
+      totalCount: users.total_count
+    });
+    await this.props.setData(users.items)
+    await this.setState({spinner: false});
   };
 
   setCountPageItemsFromLocaleStorage = async () => {
@@ -55,9 +72,9 @@ class App extends React.Component {
     }
   }
 
-  getUsers = () => {
+  getUsers = async () => {
 
-    this.state.value ?
+    await this.state.value ?
 
         this.fetchFunc(this.state.searchUrl+this.state.value+`&per_page=${this.props.countPageItems}&page=${this.props.totalPage}`)
 
@@ -86,7 +103,7 @@ class App extends React.Component {
 
   render() {
     const { reduceData } = this.props;
-
+    const { spinner } = this.state;
     return (
       <React.Fragment>
         <div className="wrap">
@@ -136,21 +153,25 @@ class App extends React.Component {
             <UsersCount numUsers={this.state.totalCount}/>
             <div className="wrap_user">
               <div className="users">
-                {reduceData.map(el => <User
-                    key={el.id}
-                    img={el.avatar_url}
-                    login={el.login}
-                    link={el.html_url}
-                    favorite={this.addToFavorite.bind(this)}
-                    del={this.delFromFavorite}
-                    favoriteArr={this.props.favoriteList}
-                />)}
+                {
+                  spinner ?
+                      <Spinner/>
+                      :
+                      reduceData.map(el => <User
+                          key={el.id}
+                          img={el.avatar_url}
+                          login={el.login}
+                          link={el.html_url}
+                          favorite={this.addToFavorite.bind(this)}
+                          del={this.delFromFavorite}
+                          favoriteArr={this.props.favoriteList}
+                      />)
+                }
               </div>
-              <p>1111</p>
 
-              <div className="pagination">
-                <Page/>
-              </div>
+              {/*<div className="pagination">*/}
+              {/*  <Page/>*/}
+              {/*</div>*/}
             </div>
           </React.Fragment>
         }/>

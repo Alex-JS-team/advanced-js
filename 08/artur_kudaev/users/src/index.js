@@ -11,23 +11,15 @@ import thunk from 'redux-thunk'
 import { createHashHistory } from 'history';
 import { Router } from 'react-router'
 
-
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 
-const history = syncHistoryWithStore(createHashHistory(), store)
-
+const history = syncHistoryWithStore(createHashHistory(), store);
 
 store.subscribe(()=> console.log('subscribe', store.getState()));
-
-
-
-
 
 ReactDOM.render(
     <Provider store={store}>
       <Router history={history}>
         <App />
       </Router>
-    </Provider>
-    , document.getElementById('root'));
-
+    </Provider>, document.getElementById('root'));
