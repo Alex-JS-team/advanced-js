@@ -31,9 +31,16 @@ class User extends React.Component {
 
 
   componentDidMount() {
+    // this._isMounted = true;
+    // if(this._isMounted) {
+    //
+    // }
     this.getCount(this.state.searchUrl+this.props.login)
-
   }
+
+  // componentWillUnmount() {
+  //   this._isMounted = false;
+  // }
 
   render() {
     return (

@@ -1,2 +1,2 @@
-const TOKEN = '2d0678c21a2ec9f2d6f2051ece16fbdf69e47af8';
+const TOKEN = '1fda2b1e1eb8132130f1a638eb529dd636f7f54d';
 export default TOKEN;

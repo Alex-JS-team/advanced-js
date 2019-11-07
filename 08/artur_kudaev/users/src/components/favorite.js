@@ -11,18 +11,25 @@ class Favorite extends React.Component {
   }
 
   componentDidMount() {
-    fetch(this.props.favorite, {
+    this._isMounted = true;
+    if(this._isMounted) {
+      fetch(this.props.favorite, {
         headers: {
           'Authorization': `Bearer ${this.props.token}`
         }})
-        .then(res => res.json())
-        .then(res => {
-          this.setState({
-            link: res.avatar_url,
-            login: res.login,
-            loading: false
+          .then(res => res.json())
+          .then(res => {
+            this.setState({
+              link: res.avatar_url,
+              login: res.login,
+              loading: false
+            })
           })
-        })
+    }
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   render() {

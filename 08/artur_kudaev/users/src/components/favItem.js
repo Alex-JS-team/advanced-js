@@ -13,16 +13,23 @@ class FavoriteItem extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`${this.props.item}`, {
-      headers: {
-        'Authorization': `Bearer ${this.props.token}`
-      }})
-      .then(response => response.json())
-      .then(response => {
-        this.setState({
-          item: response.login
-        })
-      });
+    this._isMounted = true;
+    if(this._isMounted) {
+      fetch(`${this.props.item}`, {
+        headers: {
+          'Authorization': `Bearer ${this.props.token}`
+        }})
+          .then(response => response.json())
+          .then(response => {
+            this.setState({
+              item: response.login
+            })
+          });
+    }
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   render() {

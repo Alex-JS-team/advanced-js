@@ -65,11 +65,18 @@ class App extends React.Component {
 
 
   componentDidMount() {
-    this.setCountPageItemsFromLocaleStorage();
-    let data = localStorage.getItem('arr');
-    if(data) {
-      this.props.addToFavoriteFromLocaleStorage(data)
+    this._isMounted = true;
+    if(this._isMounted) {
+      this.setCountPageItemsFromLocaleStorage();
+      let data = localStorage.getItem('arr');
+      if(data) {
+        this.props.addToFavoriteFromLocaleStorage(data)
+      }
     }
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   getUsers = async () => {
@@ -120,13 +127,16 @@ class App extends React.Component {
 
         </div>
         <Route exact={true} path='/favorite' render={()=>
-          <div className="favorite-list">
-            {
-              this.props.favoriteList.map((el, i) => {
-                return <FavoriteItem key={i} item={el} />
-              })
-            }
-          </div>
+          <>
+            <input type='text' placeholder='Search in favorite..'/>
+            <div className="favorite-list">
+              {
+                this.props.favoriteList.map((el, i) => {
+                  return <FavoriteItem key={i} item={el} />
+                })
+              }
+            </div>
+          </>
         }/>
         <Route path='/favorite/:login' component={About}/>
         <Route exact={true} path='/' render={()=>

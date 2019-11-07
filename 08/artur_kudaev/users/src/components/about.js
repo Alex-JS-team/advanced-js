@@ -21,11 +21,13 @@ class About extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`https://api.github.com/users/${this.props.match.params.login}`, {
-      headers: {
-        'Authorization': `Bearer ${this.props.token}`
-      }
-    })
+    this._isMounted = true;
+    if(this._isMounted) {
+      fetch(`https://api.github.com/users/${this.props.match.params.login}`, {
+        headers: {
+          'Authorization': `Bearer ${this.props.token}`
+        }
+      })
         .then(res => res.json())
         .then(res => {
           this.setState({
@@ -41,6 +43,11 @@ class About extends React.Component {
             repos: res.public_repos
           })
         })
+    }
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   render() {

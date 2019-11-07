@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 export default function Nav() {
   return (
     <nav>
-      <ul>
+      <ul id='foo'>
         <li><NavLink exact={true} to={{
           pathname: '/'
         }}>Home</NavLink></li>
